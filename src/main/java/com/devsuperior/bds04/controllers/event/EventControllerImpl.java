@@ -1,4 +1,4 @@
-package com.devsuperior.bds04.controllers;
+package com.devsuperior.bds04.controllers.event;
 
 import com.devsuperior.bds04.dto.EventDTO;
 import com.devsuperior.bds04.services.event.EventServiceIT;
@@ -15,20 +15,17 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/events")
-public class EventController {
+public class EventControllerImpl implements EventControllerIT {
     @Autowired
     private EventServiceIT service;
 
-    @GetMapping
     public ResponseEntity<Page<EventDTO>> findAll(Pageable pageable) {
         PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("name"));
         Page<EventDTO> list = service.findAll(pageRequest);
         return ResponseEntity.ok().body(list);
     }
 
-    @PostMapping
-    public ResponseEntity<EventDTO> insert(@Valid @RequestBody EventDTO dto) {
+    public ResponseEntity<EventDTO> insert(EventDTO dto) {
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();

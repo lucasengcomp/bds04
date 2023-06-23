@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-class CityControllerIT {
+class CityControllerImplIT {
 
 	@Autowired
 	private MockMvc mockMvc;
