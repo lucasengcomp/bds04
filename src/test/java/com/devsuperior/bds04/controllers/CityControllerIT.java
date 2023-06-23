@@ -39,7 +39,7 @@ class CityControllerIT {
 	private String adminPassword;
 	
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
 		
 		clientUsername = "ana@gmail.com";
 		clientPassword = "123456";
